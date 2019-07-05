@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Psychic Game</title>
+  <script src="assets/javascript/game.js"></script>
+
+</head>
+
+<body>
+
+  <h1>The Psychic Game</h1>
+  <p>Guess what letter I am thinking of...</p>
+  
+  <div id="game">
+    <p id="userchoice-text"></p>
+    <p id="computerchoice-text"></p>
+    <p id="win-tag"></p>
+    <p id="lose-tag"></p>
+    <p id="left-tag"></p>
+    <p id="past-tag"></p>
+  </div>
+
+  <script type="text/javascript">
+    var computerChoices = ["a", "b", "c", "d", "e", 
+                           "f", "g", "h", "i", "j", 
+                           "k", "l", "m", "n", "o", 
+                           "p", "q", "r", "s", "t", 
+                           "u", "v", "w", "x", "y", "z"];
+    
+    var pastGuesses = [];
+
+    var userChoiceText = document.getElementById("userchoice-text");
+    var computerChoiceText = document.getElementById("computerchoice-text");
+    var userWin = document.getElementById("win-tag");
+    var userLose = document.getElementById("lose-tag");
+    var guessLeft = document.getElementById("left-tag");
+    var prevGuess = document.getElementById("past-tag");
+
+    var win = 0;
+    var lose = 0;
+    var left = 9;
+
+    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+    document.onkeyup = function(event) {
+      var userGuess = event.key;
+      
+      if(userGuess == computerGuess) {
+          ++win;
+          left = 9;
+      } else if (left > 0 && (userGuess != computerGuess)) {
+          --left;
+          pastGuesses.push(userGuess);
+      } else if (left == 0) {
+          ++lose;
+          left = 9;
+      }
+
+      
+      userChoiceText.textContent = "You chose: " + userGuess;
+      computerChoiceText.textContent = "The Computer chose: " + computerGuess;
+      userWin.textContent = "Win: " + win;
+      userLose.textContent = "Lose: " + lose;
+      guessLeft.textContent = "Guesses Left: " + left;
+      prevGuess.textContent = "Your Guesses so far: " + pastGuesses;
+
+    };
+  </script>
+
+</body>
+
+</html>
