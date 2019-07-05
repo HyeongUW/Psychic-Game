@@ -47,15 +47,23 @@
     document.onkeyup = function(event) {
       var userGuess = event.key;
       
+      // Matching case, win
       if(userGuess == computerGuess) {
           ++win;
           left = 9;
-      } else if (left > 0 && (userGuess != computerGuess)) {
+          pastGuesses = [];
+          computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+      // No match, but still guesses left
+        } else if (left > 1 && (userGuess != computerGuess)) {
           --left;
           pastGuesses.push(userGuess);
-      } else if (left == 0) {
+      // no match, no guesses left, lose
+        } else if (left == 1) {
           ++lose;
           left = 9;
+          pastGuesses = [];
+          computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
       }
 
       
