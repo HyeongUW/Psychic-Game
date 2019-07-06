@@ -12,6 +12,7 @@
 
   <h1>The Psychic Game</h1>
   <p>Guess what letter I am thinking of...</p>
+  <p>Check The Console If You Want To Check The Answer!</p>
   
   <div id="game">
     <p id="userchoice-text"></p>
@@ -68,7 +69,7 @@
 
       
       userChoiceText.textContent = "You chose: " + userGuess;
-      computerChoiceText.textContent = "The Computer chose: " + computerGuess;
+      console.log("The Computer chose: " + computerGuess);
       userWin.textContent = "Win: " + win;
       userLose.textContent = "Lose: " + lose;
       guessLeft.textContent = "Guesses Left: " + left;
